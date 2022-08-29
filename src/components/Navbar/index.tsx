@@ -1,6 +1,6 @@
 import logo from "../../assets/logo-teste.svg";
 
-function Navbar() {
+export default function Navbar() {
 
   return (
     <nav className="
@@ -36,5 +36,3 @@ function Navbar() {
     </nav>
   );
 }
-
-export default Navbar;

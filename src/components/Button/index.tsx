@@ -1,7 +1,8 @@
-function Button() {
+export default function Button({text, answer}:{text: any, answer: any}){
 
   return (
-    <button type="button" className="
+    <button type="button" onClick={() => {answer(true);}}
+      className="
       h-20
       xs:h-10
       md:h-12 
@@ -10,10 +11,10 @@ function Button() {
       bg-destaque 
       text-white
       text-18
-      font-bold">
-      Novo Card
+      font-bold
+      shadow-button">
+      {text}
     </button>
   );
-}
 
-export default Button;
+}

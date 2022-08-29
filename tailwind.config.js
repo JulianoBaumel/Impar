@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['./public/*.{html}','./src/**/*.{js,jsx,ts,tsx,vue,html}','./src/assets/*.{svg}'],
+  content: ['.{html}','./src/**/*.{js,jsx,ts,tsx}','./src/assets/*.{svg}'],
   theme: {
     screens: {
       'xs': '390px', // => @media (min-width: 390px)
@@ -10,7 +10,6 @@ module.exports = {
       '2xl': '1440px',// => @media (min-width: 1440px)
     },
     maxWidth: {
-      'max-w-8xl': '90rem',
       '2/3': '66.666667%',
     },
     fontFamily: {
@@ -49,6 +48,9 @@ module.exports = {
         'card-line-x': '#F0EFF0',
         'card-line-y': '#F6F4F6',
 
+        'modal-elipse-border': '#E4E4E4',
+        'modal-elipse': '#DB25250F',
+
         'sidebar-bg':'#F6F4F6CC',
         
         '000000': '#000000',
@@ -65,10 +67,16 @@ module.exports = {
       boxShadow: {
         'navbar-shadow': '0px 3px 6px #00000029',
         'card-shadow': '0px 3px 6px #E5E5E5;',
-        'card-shadow-inner': 'inset 0px 3px 6px #0000000F'
+        'card-shadow-inner': 'inset 0px 3px 6px #0000000F',
+        'close-modal-x': '0px 3px 6px #E7631636',
+        'button' : '0px 3px 6px #92207242'
       },
       width: {
         '1040': '65rem'
+      },
+      maxWidth: {
+        'max-w-xxs': '19rem',
+        'max-w-8xl': '90rem'
       },
       spacing:{
         '25px': '1.563',
@@ -76,6 +84,8 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
 
