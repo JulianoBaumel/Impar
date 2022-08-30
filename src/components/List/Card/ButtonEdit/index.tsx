@@ -1,6 +1,7 @@
 import edit from "../../../../assets/Icon-edit.svg"
 
-export default function ButtonDelete(props) {
+export default function ButtonDelete(){
+  return(
     <div className="
       basis-1/2 
       flex 
@@ -18,4 +19,5 @@ export default function ButtonDelete(props) {
         </label>
       </div>
     </div>
+  )
 }

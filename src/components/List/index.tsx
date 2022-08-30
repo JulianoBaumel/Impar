@@ -13,7 +13,7 @@ export default function List(props){
     2xl:grid-cols-4 
     gap-9">
         {pokemons.map((pokemon) =>(
-          <Card key={pokemon.toString()} pokemon={pokemon}/>
+          <Card key={pokemon.toString()} pokemon={pokemon} setVisibility={props.setVisibility}/>
         ))}
     </div>
   );

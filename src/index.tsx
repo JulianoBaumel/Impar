@@ -43,10 +43,10 @@ export default function Index(){
           </label>
         </div>
         <div className="flex-none">
-          <Button text={"Novo Card"} answer={setVisibility}/>
+          <Button text={"Novo Card"} answer={setVisibilitySidebar}/>
         </div>
       </div>
-      <List pokemons={pokemons} setPokemons={setPokemons}/>
+      <List pokemons={pokemons} setPokemons={setPokemons} setVisibility={setVisibilityModal}/>
     </div>
     </>
   );

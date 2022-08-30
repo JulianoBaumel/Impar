@@ -1,8 +1,6 @@
-import { useState } from "react";
-import Modal from "../../Modal";
-
-import edit from "../../../assets/Icon-edit.svg"
+import { Key } from "react";
 import ButtonDelete from "./ButtonDelete";
+import ButtonEdit from "./ButtonEdit";
 
 export default function Card(props) {
 
@@ -13,10 +11,8 @@ export default function Card(props) {
 
   const source = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png`
 
-}
-
   return (
-    <div key={props.key} className="min-w-min flex flex-col justify-evenly items-center rounded-lg border border-card-border shadow-card-shadow
+    <div className="min-w-min flex flex-col justify-evenly items-center rounded-lg border border-card-border shadow-card-shadow
       ">
       <div className="mt-7 mb-5">
         <div className="p-4 w-24 h-24 rounded-full bg-card-elipse border border-card-border ">
@@ -30,7 +26,7 @@ export default function Card(props) {
       </div>
       <div className="w-full flex flex-row shadow-card-shadow-inner p-3 divide-x border-card-line-y text-15 text-secundaria-text">
         <ButtonEdit />
-        <ButtonDelete />
+        <ButtonDelete setVisibility={props.setVisibility}/>
       </div>
     </div>
   );
