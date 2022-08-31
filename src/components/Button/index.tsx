@@ -1,7 +1,7 @@
-export default function Button({text, answer}:{text: any, answer: any}){
+export default function Button(props: {text: any, answer: any}){
 
   return (
-    <button type="button" onClick={() => {answer(true);}}
+    <button type="button" onClick={() => {props.answer(true);}}
       className="
       h-20
       xs:h-10
@@ -13,7 +13,7 @@ export default function Button({text, answer}:{text: any, answer: any}){
       text-18
       font-bold
       shadow-button">
-      {text}
+      {props.text}
     </button>
   );
 
