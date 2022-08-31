@@ -5,34 +5,37 @@ import List from "./components/List";
 import Navbar from "./components/Navbar";
 import Search from "./components/Search";
 import Sidebar from "./components/Sidebar";
-import Modal from "./components/Modal";
 
 export default function Index(){
 
   const [visibilitySidebar, setVisibilitySidebar] = useState(false);
-  const [visibilityModal, setVisibilityModal] = useState(false);
-  
-  const [pokemons, setPokemons] = useState();
+
+  const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
     api
-      .get("/pokemon?limit=100&offset=0")
+      .get("?limit=1000&offset=0")
       .then((response) => setPokemons(response.data.results))
       .catch((error) => {
         console.error(error);
       });
   }, []);
 
+  function updatePokemon({target}: any, index: number) {
+    const data = Array.from(pokemons);
+    data.splice(index, 1, { id: index, value: target.value });
+    setPokemons(data);
+  }
+
   if (!pokemons) return null;
 
   return (
     <>
-    {visibilitySidebar && <Sidebar pokemons={pokemons} visibility={setVisibilitySidebar} />}
-    {visibilityModal && <Modal visibility={setVisibilityModal} />}
+    {visibilitySidebar && <Sidebar pokemons={pokemons} setPokemons={setPokemons} visibility={setVisibilitySidebar} />}
     <Navbar />
     <div className="flex justify-center bg-cover bg-busca">
       <div className="w-2/3 mt-36 mb-10 relative min-w-fit">
-        <Search/>
+        <Search pokemons={pokemons} setPokemons={setPokemons}/>
       </div>
     </div>
     <div className="flex justify-center flex-wrap antialiased font-muli">
@@ -46,7 +49,7 @@ export default function Index(){
           <Button text={"Novo Card"} answer={setVisibilitySidebar}/>
         </div>
       </div>
-      <List pokemons={pokemons} setPokemons={setPokemons} setVisibility={setVisibilityModal}/>
+      <List pokemons={pokemons} setPokemons={setPokemons}/>
     </div>
     </>
   );
