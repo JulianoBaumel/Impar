@@ -16,6 +16,7 @@ module.exports = {
       'muli': ['Muli', 'sans-serif'],
     },
     fontSize: {
+      '8': '.5rem',
       '12': '.75rem',
       '13': '.813rem',
       '18': '1.125rem',
