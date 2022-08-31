@@ -1,15 +1,16 @@
+import { useState } from "react";
 import create from '../../../src/assets/icone_criar.svg'
 import Button from '../Button';
 
-export default function Sidebar(props){
+export default function Sidebar(props: { pokemons: any[]; setPokemons: any; visibility: any; }){
 
-  function adicionarPokemon(nome: any, url: any){
-    pokemons.push(
-      {
-        "name": nome,
-        "url": url
-      }
-    )
+  const [pokeName, setPokeName] = useState("");
+  const [pokeImg, setPokeImg] = useState();
+
+  function addPokemon() {
+    const data = Array.from(props.pokemons);
+    data.push({name: pokeName, src: pokeImg});
+    props.setPokemons(data);
   }
 
   return(
@@ -43,19 +44,18 @@ export default function Sidebar(props){
                 </label>
               </div>
             </div>
-            <div className="">
+            <div>
               <span className="uppercase">Digite um nome para o card</span>
-              <input placeholder="Digite o título..." type="text" onChange={onChangeHandle}/>
+              <input placeholder="Digite o título..." type="text" onChange={() => {(p) => setPokeName(p.target.value)}}/>
             </div>
-            <div className="">
+            <div>
               <span className="uppercase">inclua uma imagem para aparecer no card</span>
-              <input type="file"/>
+              <input type="file" onChange={() => {(p) => setPokeImg(p.target.value)}}/>
             </div>
-            <div className="flex" onClick={() => {visibility(false);}}>
-              <Button text={"Criar card"} answer={adicionarPokemon}/>
+            <div className="flex" onClick={() => {props.visibility(false);}}>
+              <Button text={"Criar card"} answer={addPokemon}/>
             </div>
         </div>
     </div>
   );
 }
-
