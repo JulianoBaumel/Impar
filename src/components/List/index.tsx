@@ -1,6 +1,6 @@
 import Card from "./Card";
 
-export default function List(props){
+export default function List(props: { pokemons: any; setPokemons: any; }){
 
   const pokemons = props.pokemons;
 
@@ -12,8 +12,8 @@ export default function List(props){
     xl:grid-cols-3 
     2xl:grid-cols-4 
     gap-9">
-        {pokemons.map((pokemon) =>(
-          <Card key={pokemon.toString()} pokemon={pokemon} setVisibility={props.setVisibility}/>
+        {pokemons.map((pokemon: any) =>(
+          <Card key={pokemon.name.toString()} pokemon={pokemon} pokemons={pokemons} setPokemons={props.setPokemons}/>
         ))}
     </div>
   );
