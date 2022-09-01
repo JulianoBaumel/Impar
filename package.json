@@ -1,6 +1,6 @@
 {
-  "name": "template-vite-react-ts-tailwind-v3",
-  "version": "0.0.0",
+  "name": "teste-impar",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
