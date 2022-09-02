@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import api from "./services/api";
 import Button from "./components/Button";
 import List from "./components/List";
@@ -11,21 +11,18 @@ export default function Index(){
   const [visibilitySidebar, setVisibilitySidebar] = useState(false);
 
   const [pokemons, setPokemons] = useState([]);
+  const [search, setSearch] = useState([]);
 
-  useEffect(() => {
+  useLayoutEffect( () => {
     api
       .get("?limit=1000&offset=0")
-      .then((response) => setPokemons(response.data.results))
-      .catch((error) => {
+      .then((response) => {
+        setPokemons(response.data.results)
+        setSearch(response.data.results)
+      }).catch((error) => {
         console.error(error);
       });
   }, []);
-
-  function updatePokemon({target}: any, index: number) {
-    const data = Array.from(pokemons);
-    data.splice(index, 1, { id: index, value: target.value });
-    setPokemons(data);
-  }
 
   if (!pokemons) return null;
 
@@ -33,15 +30,43 @@ export default function Index(){
     <>
     {visibilitySidebar && <Sidebar pokemons={pokemons} setPokemons={setPokemons} visibility={setVisibilitySidebar} />}
     <Navbar />
-    <div className="flex justify-center bg-cover bg-busca">
-      <div className="w-2/3 mt-36 mb-10 relative min-w-fit">
-        <Search pokemons={pokemons} setPokemons={setPokemons}/>
+    <div className="
+    font-muli
+    flex 
+    justify-center 
+    bg-cover 
+    bg-busca
+    ">
+      <div className="
+      w-2/3
+      min-w-fit 
+      mt-36 
+      mb-10 
+      relative 
+      ">
+        <Search pokemons={pokemons} setSearch={setSearch}/>
       </div>
     </div>
-    <div className="flex justify-center flex-wrap antialiased font-muli">
-      <div className="flex space-x-px items-end w-2/3 pt-8 pb-9 min-w-fit">
+    <div className="
+    flex 
+    justify-center 
+    flex-wrap
+    ">
+      <div className="
+      w-2/3
+      min-w-fit
+      pt-8 
+      pb-9
+      flex 
+      space-x-px 
+      items-end 
+      ">
         <div className="grow">
-          <label className="text-primaria text-32 leading-10 select-none">
+          <label className="
+          text-primaria 
+          text-32 
+          select-none
+          ">
             Resultado de busca
           </label>
         </div>
@@ -49,7 +74,7 @@ export default function Index(){
           <Button text={"Novo Card"} answer={setVisibilitySidebar}/>
         </div>
       </div>
-      <List pokemons={pokemons} setPokemons={setPokemons}/>
+      <List pokemons={search} setPokemons={setPokemons}/>
     </div>
     </>
   );
