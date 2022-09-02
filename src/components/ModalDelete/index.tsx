@@ -5,14 +5,22 @@ import ButtonDelete from "./MButtonDelete";
 export default function ModalDelete(props: { pokemons: any; setPokemons: any; visibility: any; name: string; }){
 
     const pokemons = props.pokemons;
-    
+
+    //Procura no Array o Pokemon
     let verify = pokemons.map((p: any) =>(p.name == props.name))
 
+    //Apos econtrar é pego a sua possição no Array
     let index = verify.indexOf(true)
 
+    //Deleta o pokemon do Array Pokemon
     function deletePokemon() {
+        //Clona o Array Pokemon.
         const data = Array.from(pokemons);
+
+        //Remove o Pokemon do Array Clonado.
         data.splice(index, 1);
+
+        //Define o Array Clonado como Array Pokemon.
         props.setPokemons(data);
     }
 
