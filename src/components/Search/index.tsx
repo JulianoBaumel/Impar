@@ -1,32 +1,30 @@
 import { useState } from "react";
 import lupa from "../../assets/lupa.svg";
 
-export default function Search(props: { setPokemons: any; pokemons: any; }){
+export default function Search(props: { setSearch: any; pokemons: any; }){
 
   const pokemons = Array.from(props.pokemons)
-  
+
   const [filter, setFilter] = useState('');
-  const [oldData, setOldData] = useState(pokemons);
 
   function searchPokemon() {
-    if(filter == ''){
+    if(filter == ""){
+      props.setSearch(pokemons);
+    }
+    else {
+      props.setSearch(pokemons.filter((pokemon) => filterName(pokemon.name)))
+    }
+  }
 
-      props.setPokemons(oldData);
-      
+  function filterName(name: string){
+
+    let index = filter.length;
+
+    if(name.substring(index, 0) == filter.substring(index, 0).toLowerCase()){
+      return name;
     }
     else{
-      setOldData(pokemons);
-
-      let data = pokemons;
-      let fill = data.filter(pokemon => pokemon.name == filter.toLowerCase());
-
-      if(fill.length > 0){
-        props.setPokemons(fill);
-      }
-      else{
-        props.setPokemons(oldData);
-      }
-
+      return null;
     }
   }
 
@@ -40,9 +38,9 @@ export default function Search(props: { setPokemons: any; pokemons: any; }){
         inset-y-0 
         right-0 
         -mt-6">
-        <img src={lupa} className="my-3 mr-6" onClick={() => searchPokemon()}/>
+        <img src={lupa} className="my-3 mr-6"/>
       </span>
-      <input placeholder="Digite aqui sua busca..." type="text" name="search" value={filter} onChange={(p) => setFilter(p.target.value)}
+      <input placeholder="Digite aqui sua busca..." type="text" name="search" value={filter} onKeyUp={() => searchPokemon()} onChange={(p) => setFilter(p.target.value)}
         className="
         form-input
         w-full 
