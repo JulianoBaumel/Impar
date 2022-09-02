@@ -7,24 +7,29 @@ import PokemonImage from "../../../services/PokemonImage";
 
 export default function Card(props: { pokemon: any; pokemons: any; setPokemons: any; }) {
 
+  //Define a visibilidade das modal`s.
   const [visibilityMDel, setVisibilityMDel] = useState(false);
   const [visibilityMInf, setVisibilityMInf] = useState(false);
 
   const pokemon = props.pokemon;
-
   let source;
   let number;
 
+  //Fiz essa parte para lidar com os pokemons que são adicionados
   if(typeof pokemon.url === "undefined"){
 
+    //Caso seja um pokemon adicionado a imagem definida é carregada.
     source = pokemon.src;
 
   }
   else{
+    //Regex para limpar as informações da URL deixando apenas o ID do pokemon.
     const regex = /\b\d+/g;
-    
+
+    //define o ID do pokemon.
     number = regex.exec(pokemon.url);
 
+    //Usando o padrão da URL das imagens da API para pegar cada imagem sem precisar fazer uma requisição para a API para cada item.
     source = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png`;
   }
 
