@@ -3,13 +3,22 @@ import api from "../../services/api";
 import Icons from "../../services/icons"
 import PokemonImage from "../../services/PokemonImage";
 
+interface IPokemon {
+    id: number;
+    name: string;
+    height: number;
+    weight: number;
+    stats: string[];
+    types: string[];
+    sprites: {front_default: string};
+}
 
 export default function ModalInfo(props: { name: string; visibility: any; }){
 
-    const [pokemon, setPokemon] = useState([]);
+    //Recebe as informações da API.
+    const [pokemon, setPokemon] = useState<IPokemon>();
 
-    console.log(props.name)
-
+    //Busca na API pelo nome do pokemon(name).
     useEffect(() => {
         api
           .get(`/${props.name}`)
@@ -98,9 +107,29 @@ export default function ModalInfo(props: { name: string; visibility: any; }){
                         ))}
                     </div>
                     
-                    <div className="w-3/5 grid grid-cols-2 gap-1 place-items-center mb-7">
-
-                        <div className="w-full col-span-2 border-card-line-x border-b mb-3 mt-1 text-13 text-center">Information</div>
+                    <div className="
+                    w-3/5 
+                    mb-7 
+                    grid 
+                    grid-cols-2 
+                    gap-1 
+                    place-items-center 
+                    font-light 
+                    tracking-widest
+                    ">
+                        <div className="
+                        w-full
+                        mb-3 
+                        mt-1
+                        col-span-2 
+                        font-semibold 
+                        border-card-line-x 
+                        border-b 
+                        text-13 
+                        text-center
+                        ">
+                            Information
+                        </div>
                         
                         <div className="w-full">Id:</div>
                         <div className="w-full text-right">{pokemon.id}</div>
@@ -114,7 +143,19 @@ export default function ModalInfo(props: { name: string; visibility: any; }){
                         <div className="w-full">Peso:</div>
                         <div className="w-full text-right">{pokemon.weight /10} kg</div>
 
-                        <div className="w-full col-span-2 border-card-line-x border-b mb-3 mt-1 text-13 text-center">Stats</div>
+                        <div className="
+                        w-full
+                        mb-3
+                        mt-1
+                        col-span-2 
+                        font-semibold 
+                        border-card-line-x 
+                        border-b 
+                        text-13 
+                        text-center
+                        ">
+                            Stats
+                        </div>
                         
                         {pokemon.stats.map((data: any) =>(
                             <>
