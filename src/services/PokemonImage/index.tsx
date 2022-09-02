@@ -1,8 +1,10 @@
+//Retorna o icone do pokemon como uma imagem.
+
 export default function PokemonImage(props: { id: number; image: any; name: string; }){
 
     let source;
 
-    //alguns pokemons estão sem imagem, esta parte trata essa ausência.
+    //Alguns pokemons estão sem imagem, esta parte trata essa ausência.
 
     if(props.id == 899){
         source = "https://archives.bulbagarden.net/media/upload/7/75/899Wyrdeer.png";
@@ -26,6 +28,8 @@ export default function PokemonImage(props: { id: number; image: any; name: stri
         source = 'https://archives.bulbagarden.net/media/upload/b/bf/905Enamorus.png';
     }
     else{
+
+        //Caso não seja nenhum desses pokemons ele apenas vai normalmente.
         source = props.image;
     }
 
