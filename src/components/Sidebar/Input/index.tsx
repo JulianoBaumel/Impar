@@ -1,21 +1,31 @@
+const Input = (props: { onChange: any; value: string; }) => {
 
-export default function Input(){
+  //Recebe a informação do input.
+  function handleChange(event: any) {
+    props.onChange(event.target.value)
+  }
 
   return(
-    <div className="">
-    <label>Digite um nome para o card</label>
-    <input placeholder="Digite o título" type="text"
+    <div className="mb-12">
+      <label className="uppercase">Digite um nome para o card
+        <input type="text" placeholder="Digite o título..." value={props.value} onChange={handleChange} 
         className="
-        w-full 
+        mt-2
+        w-full
+        h-14
+        px-6
         rounded-lg
-        border-none
-        pl-7 pr-20 py-5
-        hover:cursor-pointer 
-        text-24 leading-7 text-2xl
-        font-muli font-light antialiased 
-        placeholder:text-primaria-text
-        placeholder:hover:text-secundaria-text
-        focus:ring-transparent"/>
+        text-18
+        font-normal
+        border-sidebar-input-border
+        text-primaria-text
+        focus:ring-transparent
+        focus:border-sidebar-input-border
+        hover:cursor-pointer
+        "/>
+      </label>
     </div>
   );
 }
+
+export default Input;
