@@ -17,6 +17,8 @@ import rock from "../assets/elements/rock.svg";
 import steel from "../assets/elements/steel.svg";
 import water from "../assets/elements/water.svg";
 
+//Para cada tipo um icone é definido e retornado como uma imagem.
+
 export default function Icons(props: { type: any; }){
 
     const type = props.type;
