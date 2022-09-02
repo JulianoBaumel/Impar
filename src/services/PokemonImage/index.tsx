@@ -1,4 +1,4 @@
-export default function PokemonImage(props){
+export default function PokemonImage(props: { id: number; image: any; name: string; }){
 
     let source;
 
