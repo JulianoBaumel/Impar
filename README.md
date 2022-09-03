@@ -79,6 +79,8 @@
 ## Utilizar Projeto
 
 ```bash
+com o node.js instalado:
+
 abrir o prompt de comando;
 
 npx degit JulianoBaumel/Impar#main (nome da pasta);
